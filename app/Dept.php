@@ -3,9 +3,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Labors extends Model
+class Dept extends Model
 {
-    protected $table = "atten_labors";
+    protected $table = "atten_dept";
     protected $primaryKey = 'idx';
     public $timestamps = true;
 }

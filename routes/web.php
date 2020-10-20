@@ -57,7 +57,18 @@ Route::prefix('atten')->middleware('Checkloginstatus')->group(function () {
 
     //員工請假假別
     Route::prefix('leave_set')->group(function() {
-        Route::get('/', 'LeaveSetController@index')->name('leave.show');
+        Route::get('/', 'LeaveSetController@index')->name('leaveset.show');
+
+        Route::get('add', 'LeaveSetController@add_leaveset');
+        Route::post('add','LeaveSetController@add_leaveset_action');
+
+        Route::get('modify/{idx}','LeaveSetController@modify_leaveset');
+        Route::post('modify','LeaveSetController@modify_leaveset_actions');
+    });
+
+    //員工部門管理
+    Route::prefix('dept_set')->group( function () {
+        Route::get('/','DeptController@index');
     });
 });
 

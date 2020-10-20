@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModifySchedules extends Migration
+class AddIsShow extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class ModifySchedules extends Migration
      */
     public function up()
     {
-        //
-        Schema::table("atten_schedules", function (Blueprint $table)
-        {
-            $table->string('delete_flag')->after('schedule_buffer')->comment('軟刪除flag');
+        Schema::table('atten_dept', function (Blueprint $table) {
+            //
+            $table->integer('is_show')->comment('是否顯示')->after('dept_name');
         });
     }
 
@@ -27,6 +26,8 @@ class ModifySchedules extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('atten_dept', function (Blueprint $table) {
+            //
+        });
     }
 }

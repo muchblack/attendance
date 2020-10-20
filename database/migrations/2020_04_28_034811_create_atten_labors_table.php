@@ -24,7 +24,7 @@ class CreateAttenLaborsTable extends Migration
             $table->string('labor_tel',20)->comment('員工電話');
             $table->string('labor_dept',50)->comment('員工部門');
             $table->string('labor_dept_level',10)->comment('員工部門身份 0:超級管理者 1:老闆 2:總經理/副總經理 3:主管 4:一般');
-            $table->integer('is_resign',10)->comment('是否離職(1離職 0在職')->default(0);
+            $table->integer('is_resign')->comment('是否離職(1離職 0在職')->default(0);
             $table->timestamps();
         });
     }

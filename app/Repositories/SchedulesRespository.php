@@ -2,7 +2,6 @@
 namespace App\Repositories;
 
 use App\Schedules;
-use Facade\Ignition\Support\Packagist\Package;
 
 class SchedulesRespository
 {
@@ -21,7 +20,7 @@ class SchedulesRespository
 
     public function get_single_schedules($idx)
     {
-        $schedules = $this->schedules->where('idx',$idx)->get()->first()->toArray();
+        $schedules = $this->schedules->where('id',$idx)->get()->first()->toArray();
 
         return $schedules;
     }
@@ -39,7 +38,7 @@ class SchedulesRespository
 
     public function modify_schedules($params,$idx)
     {
-        $result = $this->schedules->where(['idx'=>$idx])->update($params);
+        $result = $this->schedules->where(['id'=>$idx])->update($params);
 
         if($result)
         {
@@ -51,7 +50,7 @@ class SchedulesRespository
 
     public function delete_schedules($idx)
     {
-        $result = $this->schedules->where('idx',$idx)->update(['delete_flag' => 1 ]);
+        $result = $this->schedules->where('id',$idx)->update(['delete_flag' => 1 ]);
         if($result)
         {
             return true;

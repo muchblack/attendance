@@ -19,7 +19,7 @@
                             @endfor
                         </select>：
                         <select name="work_start_mins">
-                            @for($i=0;$i<60;$i++)
+                            @for($i=0;$i<61;$i=$i+10)
                                 <option value="{{str_pad($i,2,0,STR_PAD_LEFT)}}">{{str_pad($i,2,0,STR_PAD_LEFT)}}</option>
                             @endfor
                         </select>
@@ -32,10 +32,18 @@
                             @endfor
                         </select>：
                         <select name="work_end_mins">
-                            @for($i=0;$i<60;$i++)
+                            @for($i=0;$i<61;$i=$i+10)
                                 <option value="{{str_pad($i,2,0,STR_PAD_LEFT)}}">{{str_pad($i,2,0,STR_PAD_LEFT)}}</option>
                             @endfor
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>隸屬部門</label>
+                        <select name="dept_idx">
+                            @foreach($depts as $item)
+                                <option value="{{$item['idx']}}">{{$item['dept_name']}}</option>
+                            @endforeach
+                        </select>：
                     </div>
                     <div class="form-group">
                         <label>緩衝時間(單位：分)</label>

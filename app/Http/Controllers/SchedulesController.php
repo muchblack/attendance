@@ -4,6 +4,7 @@
  */
 namespace App\Http\Controllers;
 
+use App\Services\DeptService;
 use App\Services\SchedulesService;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,13 @@ class SchedulesController extends Controller
 {
     public function __construct(
         SchedulesService $schedulesService,
-        Request $request
+        Request $request,
+        DeptService $deptService
     )
     {
         $this->schedules = $schedulesService;
         $this->request = $request;
+        $this->dept = $deptService;
     }
 
     //員工班表總覽
@@ -37,9 +40,12 @@ class SchedulesController extends Controller
     //新增員工班表
     public function add_schedules()
     {
+        //取出所有部門
+        $depts = $this->dept->get_depts();
         $data = [
             'title'=> '新增班表',
             'user' => $this->request->session()->get('user'),
+            'depts' => $depts
         ];
 
         return  view('schedules.add',$data);
@@ -64,17 +70,13 @@ class SchedulesController extends Controller
     public function modify_schedules($idx)
     {
         $signle_schedules = $this->schedules->get_single_schedules($idx);
-
-        //時間分割
-        $start_time = explode(':',$signle_schedules['schedule_start']);
-        $end_time = explode(':',$signle_schedules['schedule_end']);
+        $depts = $this->dept->get_depts();
 
         $data = [
             'title' => '班表修改',
             'schedules' => $signle_schedules,
-            'start_time' => $start_time,
-            'end_time' => $end_time,
-            'user' => $this->request->session()->get('user')
+            'user' => $this->request->session()->get('user'),
+            'depts' => $depts
         ];
         return view('schedules.edit',$data);
     }

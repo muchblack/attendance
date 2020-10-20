@@ -19,6 +19,7 @@
                             <th align="center">表定上班時間</th>
                             <th align="center">表定下班時間</th>
                             <th align="center">緩衝時間</th>
+                            <th align="center">部門</th>
                             <th align="center"></th>
                         </tr>
                         </thead>
@@ -29,9 +30,10 @@
                                 <td align="center">{{$item['schedule_start']}}</td>
                                 <td align="center">{{$item['schedule_end']}}</td>
                                 <td align="center">{{$item['schedule_buffer']}}</td>
+                                <td align="center">{{$item['dept_name']}}</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-primary" onclick="modify({{$item['idx']}})">編輯</button>
-                                    <button type="button" class="btn btn-danger" onclick="delete_sch({{$item['idx']}})">刪除</button>
+                                    <button type="button" class="btn btn-primary" onclick="modify({{$item['id']}})">編輯</button>
+                                    <button type="button" class="btn btn-danger" onclick="delete_sch({{$item['id']}})">刪除</button>
                                 </td>
                             </tr>
                         @endforeach
